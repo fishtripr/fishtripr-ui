@@ -1,0 +1,42 @@
+@import '../common/colors';
+@import '../common/variables';
+
+.ui.steps {
+  width: 100%;
+
+  .step {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+
+    @media #{$medium-and-down} {
+      padding-top: 0.8em !important;
+      padding-bottom: 0.8em !important;
+    }
+
+    .content {
+      .title {
+        font-family: 'Montserrat';
+        font-weight: 400;
+        font-size: 14px;
+      }
+    }
+
+    &.active {
+      background-color: $pale-grey-two;
+
+      .content {
+        .title {
+          color: $battleship-grey;
+        }
+      }
+    }
+
+    &.disabled {
+      .content {
+        .title {
+          color: $cloudy-blue;
+        }
+      }
+    }
+  }
+}

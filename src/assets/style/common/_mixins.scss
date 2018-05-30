@@ -1,0 +1,115 @@
+@mixin p($fontSize:18px, $textAlign:center, $margin:0, $lh:18px){
+  font: {
+    size: $fontSize;
+    weight: 300;
+  }
+  text: {
+    align: $textAlign;
+  }
+  color: $battleship-grey;
+  margin: $margin;
+  line-height: $lh;
+}
+
+@mixin card(){
+  width: 100%;
+  overflow: hidden;
+  .card-container{
+      display: block;
+      width: 95%;
+      margin: 5% auto;
+      box-shadow: 0 2px 6px 0 rgba(69, 73, 91, 0.08);
+      cursor: pointer;
+      .img-container{
+          position: relative;
+          width: 100%;
+          padding-top: 56.25%; // ratio 19:9
+          overflow: hidden;
+          img{
+              position: absolute;
+              height: 100%;
+              left: 0; top: 0;
+          }
+      }
+      .content{
+          text-align: left;
+          background-color: white;
+          padding: 20px;
+          h2{
+              font-size: 16px;
+              font-weight: 300;
+              color: #464855;
+              margin: auto;
+              white-space: nowrap;
+              // width: 85%;
+              line-height: 120%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+          }
+          .type{
+              font-size: 12px;
+              font-weight: 200;
+              color: #898ea2;
+              margin: 10px 0 15px 0;
+              text-transform: uppercase;
+              span{
+                  i{
+                      color: inherit;
+                      margin: 0 5px;
+                  }
+              }
+          }
+          .rating-price{
+              display: flex;
+              justify-content: space-between;
+              div.rating{
+                  display: flex;
+                  align-items: center;
+                  opacity: 0;
+                  .star-hover{
+                      img{
+                          height: 16px;
+                      }
+                  }
+                  span{
+                      margin-left: 5px;
+                      font-size: 12px;
+                      color: $battleship-grey;
+                  }
+              }
+              p{
+                  display: flex;
+                  & span:nth-child(1){
+                      color: #898ea2;
+                      font-size: 14px;
+                      text-decoration: line-through;
+                      margin-right: 10px;
+                  }
+                  & span:nth-child(2){
+                      font-size: 20px;
+                      color: #70c7ab;
+                  }
+              }
+          }
+
+      }
+  }
+}
+
+@mixin blocTab(){
+  width: 90%;
+  max-width: 1170px;
+  min-width: 900px;
+}
+
+@mixin blocTabP(){
+  width: 90%;
+  max-width: 900px;
+  min-width: 500px;
+}
+
+@mixin blocS(){
+  width: 90%;
+  max-width: 500px;
+  min-width: 100px;
+}

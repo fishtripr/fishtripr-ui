@@ -1,0 +1,22 @@
+@import '../common/colors';
+
+.el-breadcrumb {
+  .el-breadcrumb__item {
+    font-family: Montserrat;
+
+    .el-breadcrumb__inner {
+      color: $steel;
+      font-weight: 400;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: default;
+    }
+
+    &:last-child {
+      .el-breadcrumb__inner {
+        color: $cloudy-blue;
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import '../common/colors';
+
+.el-checkbox-group {
+  display: flex;
+  flex-direction: column;
+
+  .el-checkbox {
+    margin-left: 0;
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+    .el-checkbox__input.is-checked .el-checkbox__inner {
+      background-color: $pale-teal;
+    }
+
+    .el-checkbox__inner {
+      border-color: $pale-teal;
+    }
+
+    .el-checkbox__label {
+      font-family: 'Montserrat';
+      font-weight: 300;
+      color: $charcoal-grey;
+      font-size: 14px;
+      padding-left: 10px;
+    }
+  }
+}

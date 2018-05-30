@@ -1,0 +1,132 @@
+// ==========================================================================
+// Vue tel input
+// (https://www.npmjs.com/package/vue-tel-input)
+// ==========================================================================
+
+// Import
+// ==========================================================================
+
+@import '../common/reset';
+@import '../common/colors';
+
+// Over-write
+// ==========================================================================
+
+.tel-input {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin: 10px 0 30px 0;
+  padding: 5px 15px;
+  border: 1px solid $cloudy-blue;
+  border-radius: 4px;
+
+  &.mobile {
+    margin: 40px 0 0 0;
+  }
+
+  .vue-tel-input {
+    width: 100%;
+    margin: 0;
+
+    .col-md-12 {
+      padding: 0;
+
+      .input-group {
+        margin-left: 10px;
+
+        input {
+          &::-webkit-input-placeholder { /* WebKit browsers */
+            font-family: Montserrat;
+            font-size: 14px;
+            color: $steel;
+          }
+          &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            font-family: Montserrat;
+            font-size: 14px;
+            color: $steel;
+          }
+          &::-moz-placeholder { /* Mozilla Firefox 19+ */
+            font-family: Montserrat;
+            font-size: 14px;
+            color: $steel;
+          }
+          &:-ms-input-placeholder { /* Internet Explorer 10+ */
+            font-family: Montserrat;
+            font-size: 14px;
+            color: $steel;
+          }
+        }
+
+        .btn-group .btn {
+          display: flex;
+          align-items: center;
+          border: none;
+          background-color: transparent;
+          padding: 0;
+
+          &:focus {
+            outline: none;
+            box-shadow: none;
+            border-color: transparent;
+          }
+
+          img {
+            margin: 0;
+            width: 20px;
+            height: 17px;
+          }
+        }
+
+        .dropdown-menu {
+          max-width: 320px;
+
+          a strong, a span {
+            font-family: 'Montserrat';
+            font-weight: 300;
+          }
+
+          .dropdown-item {
+            &:link {
+              text-decoration: none;
+              border: none;
+              outline: none;
+            }
+
+            &:hover {
+              text-decoration: none;
+              border: none;
+              outline: none;
+            }
+          }
+        }
+
+        .form-control {
+          border: none;
+          font-family: 'Montserrat';
+          border: none;
+          margin-right: 10px;
+
+          &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: transparent !important;
+          }
+        }
+
+        .form-control, .form-control:focus .is-invalid, .is-invalid:focus {
+          border: none !important;
+          border-color: transparent;
+        }
+      }
+
+    }
+  }
+
+  .circle-close {
+    position: absolute;
+    right: 0;
+    top: 15px;
+  }
+}

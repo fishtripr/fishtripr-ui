@@ -18,6 +18,8 @@
 </script>
 
 <style lang='scss'>
+  @import '../assets/style/common/variables';
+
   .fly-form-group {
     display: flex;
 
@@ -25,6 +27,10 @@
       flex-direction: row;
       > *:not(:last-child) {
         margin-right: 30px;
+      }
+
+      @media #{$small-and-down} {
+        flex-direction: column;
       }
     }
 

@@ -1,14 +1,14 @@
 # Fishtripr Components for Vue.js
 
 ## Installation and Usage:
-1. Just use `yarn add @fishtripr/fishtripr-ui`
-2. Now you can include the script by using `require('@fishtripr/fishtripr-ui')` or `import '@fishtripr/fishtripr-ui'`
-3. For Nuxt, just add the package to `nuxt.config.js`
-```javascript
-build: {
-  vendor: ['@fishtripr/fishtripr-ui']
-}
-```
+1. `yarn add @fishtripr/fishtripr-ui`
+2. require/import the package `require('@fishtripr/fishtripr-ui')` or `import '@fishtripr/fishtripr-ui'`
+3. For Nuxt, add the package to `nuxt.config.js`
+    ```javascript
+    build: {
+      vendor: ['@fishtripr/fishtripr-ui']
+    }
+    ```
 
 ## List of components:
 All components are registered with the Vue global and are available for use. You do not need to re-register them.

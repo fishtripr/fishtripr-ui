@@ -18,13 +18,23 @@
 </script>
 
 <style lang='scss'>
+  @import '../assets/style/common/variables';
+
   .fly-form-group {
     display: flex;
 
     &.is-horizontal {
       flex-direction: row;
+
       > *:not(:last-child) {
         margin-right: 30px;
+      }
+
+      @media #{$medium-and-down} {
+        flex-direction: column;
+        > *:not(:last-child) {
+          margin-bottom: 30px;
+        }
       }
     }
 

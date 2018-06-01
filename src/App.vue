@@ -26,7 +26,7 @@ export default {
   margin-top: 60px;
 
   .demo-logo {
-    width: 300px;
+    width: 150px;
   }
 
 

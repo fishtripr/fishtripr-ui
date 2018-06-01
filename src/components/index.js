@@ -5,6 +5,8 @@ import FlyFormLabel from './FlyFormLabel'
 import FlyRadio from './FlyRadio'
 import FlyRadioGroup from './FlyRadioGroup'
 import FlyFormGroup from './FlyFormGroup'
+import FlySelect from './FlySelect'
+import FlyInlineSpinner from './FlyInlineSpinner'
 
 function triggerGlobalClick(e) {
   e.stopPropagation();
@@ -30,7 +32,9 @@ const Components = {
   FlyFormLabel,
   FlyRadio,
   FlyRadioGroup,
-  FlyFormGroup
+  FlyFormGroup,
+  FlySelect,
+  FlyInlineSpinner
 }
 
 Object.keys(Components).forEach((name) => {

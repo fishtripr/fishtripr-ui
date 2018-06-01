@@ -1,11 +1,11 @@
 <template>
   <div class='fly-select'
-       :class='objectClass'
+       :class='[objectClass, size]'
   >
     <div class='fly-select_wrapper'
          @click='dropdownSwitch'
     >
-      <div class='fly-select_wrapper_icon'>
+      <div v-if='$slots.icon'class='fly-select_wrapper_icon'>
         <slot name='icon'/>
       </div>
       <div class='fly-select_wrapper_input'>
@@ -71,6 +71,13 @@
       loading: {
         type: Boolean,
         default: false
+      },
+      size: {
+        type: String,
+        default: 'normal',
+        validaor: value => {
+          return ['small', 'normal', 'large'].includes(value)
+        }
       }
     },
     data() {
@@ -81,7 +88,7 @@
           'border-top': this.topBorder,
           'border-bottom': this.bottomBorder,
           'border-left': this.leftBorder,
-          'border-right': this.rightBorder
+          'border-right': this.rightBorder,
         }
       }
     },
@@ -127,97 +134,103 @@
     align-items: center;
     box-sizing: border-box;
     width: auto;
-    height: 75px;
+    height: 40px;
     flex: 2;
     cursor: pointer;
     background-color: white;
 
+    &.large {
+      height: 75px;
+    }
+
     &.border-bottom {
       border-bottom: 1px solid $pale-grey;
     }
+
     &.border-top {
       border-top: 1px solid $pale-grey;
     }
+
     &.border-left {
       border-left: 1px solid $pale-grey;
     }
+
     &.border-right {
       border-right: 1px solid $pale-grey;
     }
-  }
 
-  .fly-select_wrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding-right: 10px;
-  }
-
-  .fly-select_wrapper_icon {
-    display: flex;
-    margin: 0 20px;
-  }
-
-  .fly-select_wrapper_input {
-    display: flex;
-    flex: 1;
-
-    input {
+    .fly-select_wrapper {
       display: flex;
-      border: none;
-      font-family: $font-family;
-      font-size: 0.85rem;
-      color: $charcoal-grey;
-      min-width: 1px;
-      width: auto;
-      flex: 1;
-      cursor: pointer;
-      background-color: white;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
 
-      &::placeholder {
-        color: $charcoal-grey;
+      .fly-select_wrapper_icon {
+        display: flex;
+        margin: 0 20px;
       }
 
-      &.is-loading {
-        &::placeholder {
-          color: $pale-grey;
+      .fly-select_wrapper_input {
+        display: flex;
+        flex: 1;
+
+        input {
+          display: flex;
+          border: none;
+          font-family: $font-family;
+          font-size: 0.85rem;
+          color: $charcoal-grey;
+          min-width: 1px;
+          width: auto;
+          flex: 1;
+          cursor: pointer;
+          background-color: white;
+
+          &::placeholder {
+            color: $charcoal-grey;
+          }
+
+          &.is-loading {
+            &::placeholder {
+              color: $pale-grey;
+            }
+          }
+        }
+      }
+    }
+
+    .fly-select_dropdown {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      width: 100%;
+      min-height: 45px;
+      max-height: 225px;
+      overflow-y: scroll;
+      border-left: 1px solid $pale-grey;
+      border-right: 1px solid $pale-grey;
+      border-bottom: 1px solid $pale-grey;
+      z-index: 20;
+
+      .fly-select_dropdown_item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 45px;
+        padding: 0 20px;
+        font-family: $font-family;
+        font-size: 0.85rem;
+        color: $charcoal-grey;
+
+        &:hover {
+          background-color: lighten($pale-grey, 6%);
         }
       }
     }
   }
-
-  .fly-select_dropdown {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    width: 100%;
-    min-height: 45px;
-    max-height: 225px;
-    overflow-y: scroll;
-    border-left: 1px solid $pale-grey;
-    border-right: 1px solid $pale-grey;
-    border-bottom: 1px solid $pale-grey;
-    z-index: 20;
-  }
-
-  .fly-select_dropdown_item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-height: 45px;
-    padding: 0 20px;
-    font-family: $font-family;
-    font-size: 0.85rem;
-    color: $charcoal-grey;
-
-    &:hover {
-      background-color: lighten($pale-grey, 6%);
-    }
-
-  }
-
 </style>

@@ -37,9 +37,11 @@ const Components = {
   FlyInlineSpinner
 }
 
-Object.keys(Components).forEach((name) => {
-  Vue.component(name, Components[name])
-})
-
-export default Components
+export default {
+  install(Vue, options) {
+    Object.keys(Components).forEach((name) => {
+      Vue.component(name, Components[name])
+    })
+  }
+}
 export {eventBus}

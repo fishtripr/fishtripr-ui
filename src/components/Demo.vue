@@ -27,14 +27,13 @@
     <div class='section-2'>
       <fly-form-group>
         <fly-select placeholder='Destination'
-                    bottom-border
                     size='large'
                     :options='destinationOptions'
                     @select='updateDestination'
                     @deselect='destination = ""'>
         </fly-select>
         <fly-select placeholder='Destination'
-                    bottom-border
+                    :has-borders='false'
                     size='large'
                     :options='destinationOptions'
                     @select='updateDestination'
@@ -47,12 +46,9 @@
 </template>
 
 <script>
-  import './index'
-  import FlySelect from './FlySelect'
 
   export default {
     name: 'demo-page',
-    components: {FlySelect},
     data() {
       return {
         travellers: '',
@@ -72,6 +68,7 @@
   .demo-page {
     display: flex;
     flex-direction: column;
+    padding: 40px;
 
     .section-1 {
       display: flex;

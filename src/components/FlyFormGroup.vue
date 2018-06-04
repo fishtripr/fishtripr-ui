@@ -22,6 +22,7 @@
 
   .fly-form-group {
     display: flex;
+    width: 100%;
 
     &.is-horizontal {
       flex-direction: row;

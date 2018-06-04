@@ -1,8 +1,9 @@
 <template>
   <div class='fly-select'
-       :class='[objectClass, size]'
+       :class='[{"no-borders": !hasBorders}, size]'
   >
     <div class='fly-select_wrapper'
+         ref='flySelect'
          @click='dropdownSwitch'
     >
       <div v-if='$slots.icon'class='fly-select_wrapper_icon'>
@@ -20,13 +21,13 @@
       <fly-inline-spinner v-if='loading' size='8px' />
     </div>
 
-    <ul v-if='dropdownIsActive && !loading'
-        class='fly-select_dropdown'>
-      <li class='fly-select_dropdown_item'
+    <ul v-if='dropdownOpen && !loading' class='fly-select_dropdown'>
+      <li :style="{minWidth: minWidth}"
           v-for='(option, i) in options'
-          :key='`fly-dropdown${i}`'
-          @click='updateValue(option)'>
-        {{option}}
+          :key='`fly-dropdown-${i}`'
+          @click='updateValue(option)'
+      >
+        <a class='fly-select_dropdown_item'>{{option}}</a>
       </li>
     </ul>
 
@@ -34,8 +35,9 @@
 </template>
 
 <script>
-  import FlyInlineSpinner from './FlyInlineSpinner'
-  import eventBus from '../helpers/eventBus'
+  import FlyInlineSpinner from '../../FlyInlineSpinner'
+  import eventBus from '../../../helpers/eventBus'
+  import {addResizeListener, removeResizeListener} from '../../../utils/resize-event';
 
   export default {
     name: 'fly-select',
@@ -48,21 +50,9 @@
         type: Array,
         required: true
       },
-      topBorder: {
+      hasBorders: {
         type: Boolean,
-        default: false
-      },
-      bottomBorder: {
-        type: Boolean,
-        default: false
-      },
-      leftBorder: {
-        type: Boolean,
-        default: false
-      },
-      rightBorder: {
-        type: Boolean,
-        default: false
+        default: true
       },
       value: {
         type: String|Object,
@@ -78,23 +68,22 @@
         validaor: value => {
           return ['small', 'normal', 'large'].includes(value)
         }
+      },
+      open: {
+        type: Boolean,
+        default: false
       }
     },
     data() {
       return {
         selectedValue: '',
-        dropdownIsActive: false,
-        objectClass: {
-          'border-top': this.topBorder,
-          'border-bottom': this.bottomBorder,
-          'border-left': this.leftBorder,
-          'border-right': this.rightBorder,
-        }
+        dropdownOpen: false,
+        minWidth: ''
       }
     },
     methods: {
       dropdownSwitch() {
-        this.dropdownIsActive = !this.dropdownIsActive
+        this.dropdownOpen = !this.dropdownOpen
       },
       updateValue(option) {
         if (this.selectedValue === option) {
@@ -110,53 +99,50 @@
         this.closeDropdown()
       },
       closeDropdown() {
-        this.dropdownIsActive = false
+        this.dropdownOpen = false
+      },
+      handleResize() {
+        this.minWidth = `${this.$refs.flySelect.getBoundingClientRect().width}px`
       }
     },
     components: {
       FlyInlineSpinner
     },
     mounted() {
+      addResizeListener(this.$refs.flySelect, this.handleResize);
       eventBus.$on('focusChanged', element => {
         element !== this.$el && this.closeDropdown()
       })
+    },
+    beforeDestroy() {
+      if (this.$refs.flySelect && this.handleResize) {
+        removeResizeListener(this.$refs.flySelect, this.handleResize)
+      }
     }
   }
 </script>
 
 <style lang='scss'>
-  @import '../assets/style/common/colors';
-  @import '../assets/style/common/fonts';
+  @import '../../../assets/style/common/colors';
+  @import '../../../assets/style/common/fonts';
 
   .fly-select {
     display: flex;
     position: relative;
     align-items: center;
-    box-sizing: border-box;
     width: auto;
     height: 40px;
     flex: 2;
     cursor: pointer;
     background-color: white;
+    border: 1px solid $pale-grey;
 
     &.large {
       height: 75px;
     }
 
-    &.border-bottom {
-      border-bottom: 1px solid $pale-grey;
-    }
-
-    &.border-top {
-      border-top: 1px solid $pale-grey;
-    }
-
-    &.border-left {
-      border-left: 1px solid $pale-grey;
-    }
-
-    &.border-right {
-      border-right: 1px solid $pale-grey;
+    &.no-borders {
+      border: none;
     }
 
     .fly-select_wrapper {
@@ -169,7 +155,7 @@
 
       .fly-select_wrapper_icon {
         display: flex;
-        margin: 0 20px;
+        padding: 0 20px;
       }
 
       .fly-select_wrapper_input {
@@ -178,13 +164,12 @@
 
         input {
           display: flex;
+          flex: 1;
           border: none;
           font-family: $font-family;
           font-size: 0.85rem;
           color: $charcoal-grey;
-          min-width: 1px;
           width: auto;
-          flex: 1;
           cursor: pointer;
           background-color: white;
 
@@ -205,10 +190,9 @@
       display: flex;
       flex-direction: column;
       position: absolute;
-      top: 100%;
-      left: 0;
+      top: 101%;
+      left: -1px;
       background-color: white;
-      width: 100%;
       min-height: 45px;
       max-height: 225px;
       overflow-y: scroll;
@@ -216,13 +200,14 @@
       border-right: 1px solid $pale-grey;
       border-bottom: 1px solid $pale-grey;
       z-index: 20;
+      padding-left: 0;
+      margin-top: 0;
 
       .fly-select_dropdown_item {
         display: flex;
         align-items: center;
-        width: 100%;
         min-height: 45px;
-        padding: 0 20px;
+        padding: 0 10px;
         font-family: $font-family;
         font-size: 0.85rem;
         color: $charcoal-grey;

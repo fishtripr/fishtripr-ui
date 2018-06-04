@@ -5,7 +5,7 @@ import FlyFormLabel from './FlyFormLabel'
 import FlyRadio from './FlyRadio'
 import FlyRadioGroup from './FlyRadioGroup'
 import FlyFormGroup from './FlyFormGroup'
-import FlySelect from './FlySelect'
+import FlySelect from './fly-select'
 import FlyInlineSpinner from './FlyInlineSpinner'
 
 function triggerGlobalClick(e) {

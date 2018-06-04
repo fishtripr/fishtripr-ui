@@ -14,6 +14,7 @@
     "e2e:open": "vue-cli-service e2e:open"
   },
   "dependencies": {
+    "resize-observer-polyfill": "1.5.0",
     "vue": "^2.5.13",
     "vue-spinner": "1.0.3"
   },

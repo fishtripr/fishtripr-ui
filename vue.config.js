@@ -1,4 +1,4 @@
-const fs = require('fs');
+const path = require('path')
 
 module.exports = {
   lintOnSave: false,
@@ -6,8 +6,9 @@ module.exports = {
     extract: false,
     loaderOptions: {
       sass: {
-        data: fs.readFileSync('src/assets/sass/mixins.scss', 'utf-8'),
-        filename: '[name].[ext]',
+        includePaths: [
+          path.resolve(__dirname, 'src/style')
+        ]
       },
     },
   },

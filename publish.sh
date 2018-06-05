@@ -7,7 +7,7 @@
   # Only push this update to the NPM if the current branch is the master branch
   if [ "$branch" == "master" ]
   then
-    echo "Deploying the $branch branch to NPM..."
+    echo "Building and deploying the $branch branch to NPM..."
 
     yarn build-bundle && npm publish --access public
 

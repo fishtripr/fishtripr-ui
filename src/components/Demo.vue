@@ -39,6 +39,11 @@
                     @select='updateDestination'
                     @deselect='destination = ""'>
         </fly-select>
+        <fly-select placeholder='Destination'
+                    :options='destinationOptions'
+                    @select='updateDestination'
+                    @deselect='destination = ""'>
+        </fly-select>
       </fly-form-group>
     </div>
 

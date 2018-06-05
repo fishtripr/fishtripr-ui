@@ -2,11 +2,6 @@
 // General CSS Template
 // ==========================================================================
 
-//  1. Reset
-// ==========================================================================
-
-@import 'common/reset';
-
 //  2. Variables
 // ==========================================================================
 
@@ -39,3 +34,6 @@
 @import 'common/responsive';
 
 @import 'overrides/index';
+
+@import 'components/select';
+@import 'components/form-item';

@@ -12,11 +12,11 @@
                 Who will be travelling ?
               </fly-form-label>
               <fly-radio-group v-model='travellers'>
-                <fly-radio disabled label='alone'></fly-radio>
-                <fly-radio label='couple'></fly-radio>
-                <fly-radio label='family'></fly-radio>
-                <fly-radio label='friends'></fly-radio>
-                <fly-radio label='group'></fly-radio>
+                <fly-radio disabled option='alone'>Alone</fly-radio>
+                <fly-radio option='couple'>Couple</fly-radio>
+                <fly-radio option='family'>Family</fly-radio>
+                <fly-radio option='friends'>Friends</fly-radio>
+                <fly-radio option='group' />
               </fly-radio-group>
             </fly-form-item>
           </fly-form-group>

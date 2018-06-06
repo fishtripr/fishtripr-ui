@@ -1,4 +1,4 @@
-@import '../common/colors';
+@import '../common/variables';
 
 .el-checkbox-group {
   display: flex;
@@ -10,15 +10,15 @@
     padding-bottom: 3px;
 
     .el-checkbox__input.is-checked .el-checkbox__inner {
-      background-color: $pale-teal;
+      background-color: $seafoam-blue;
     }
 
     .el-checkbox__inner {
-      border-color: $pale-teal;
+      border-color: $seafoam-blue;
     }
 
     .el-checkbox__label {
-      font-family: 'Montserrat';
+      font-family: $font-family;
       font-weight: 300;
       color: $charcoal-grey;
       font-size: 14px;

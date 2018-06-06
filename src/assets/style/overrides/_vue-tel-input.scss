@@ -1,15 +1,4 @@
-// ==========================================================================
-// Vue tel input
-// (https://www.npmjs.com/package/vue-tel-input)
-// ==========================================================================
-
-// Import
-// ==========================================================================
-
-@import '../common/colors';
-
-// Over-write
-// ==========================================================================
+@import '../common/variables';
 
 .tel-input {
   display: flex;
@@ -18,7 +7,7 @@
   width: 100%;
   margin: 10px 0 30px 0;
   padding: 5px 15px;
-  border: 1px solid $cloudy-blue;
+  border: 1px solid $pale-grey;
   border-radius: 4px;
 
   &.mobile {
@@ -37,22 +26,22 @@
 
         input {
           &::-webkit-input-placeholder { /* WebKit browsers */
-            font-family: Montserrat;
+            font-family: $font-family;
             font-size: 14px;
             color: $steel;
           }
           &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-            font-family: Montserrat;
+            font-family: $font-family;
             font-size: 14px;
             color: $steel;
           }
           &::-moz-placeholder { /* Mozilla Firefox 19+ */
-            font-family: Montserrat;
+            font-family: $font-family;
             font-size: 14px;
             color: $steel;
           }
           &:-ms-input-placeholder { /* Internet Explorer 10+ */
-            font-family: Montserrat;
+            font-family: $font-family;
             font-size: 14px;
             color: $steel;
           }
@@ -82,7 +71,7 @@
           max-width: 320px;
 
           a strong, a span {
-            font-family: 'Montserrat';
+            font-family: $font-family;
             font-weight: 300;
           }
 
@@ -103,8 +92,7 @@
 
         .form-control {
           border: none;
-          font-family: 'Montserrat';
-          border: none;
+          font-family: $font-family;
           margin-right: 10px;
 
           &:focus {

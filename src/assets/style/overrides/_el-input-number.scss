@@ -1,4 +1,4 @@
-@import '../common/colors';
+@import '../common/variables';
 
 .el-input-number {
 
@@ -21,7 +21,7 @@
     border-left: none;
 
     :hover {
-      color: $battleship-grey;
+      color: $pale-grey;
     }
   }
 
@@ -31,7 +31,7 @@
     border-right: none;
 
     :hover {
-      color: $battleship-grey;
+      color: $pale-grey;
     }
   }
 

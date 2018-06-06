@@ -9,10 +9,13 @@
              v-model='model'
              :name='name'
              :disabled='isDisabled'
-             :value='label'
+             :value='option'
              :checked='isChecked'
              @change='handleChange'>
-      <span>{{label}}</span>
+      <span>
+        <slot />
+        <template v-if='!$slots.default'>{{option}}</template>
+      </span>
     </label>
   </div>
 </template>
@@ -27,8 +30,7 @@
     mixins: [Emitter],
     props: {
       name: String,
-      label: String,
-      optionValue: {
+      option: {
         type: [String, Number, Boolean],
         default: false,
       },
@@ -75,10 +77,10 @@
           : this.disabled;
       },
       isChecked() {
-        return this.label === this.value;
+        return this.option === this.value;
       },
       tabIndex() {
-        return !this.isDisabled ? (this.isGroup ? (this.model === this.label ? 0 : -1) : 0) : -1
+        return !this.isDisabled ? (this.isGroup ? (this.model === this.value ? 0 : -1) : 0) : -1
       }
     },
     methods: {

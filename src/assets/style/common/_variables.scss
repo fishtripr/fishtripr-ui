@@ -7,7 +7,10 @@
 //  1. Media queries
 //  2. Grid
 //  3. Sizes
-
+//  4. Colors
+//  4.1. Colors : Template
+//  5. Font
+//  6. Spacing
 
 // 1. Media queries
 // ==========================================================================
@@ -42,10 +45,72 @@ $element-bottom-margin: ($gutter-width*2)/3 !default;
 $min-w-mobile: 300px;
 $max-w-mobile: 500px;
 $max-w-wide: 1080px;
-
 $navbar-height: 70px;
 
-// 4. Shadows
+// 4. Colors
 // ==========================================================================
 
-$form-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.08);
+// Primary
+$seafoam-blue: #56D2AB;
+$white: #FFFFFF;
+// Secondary
+$charcoal-grey: #353745;
+$steel: #898EA2;
+$pale-grey: #E4E5EC;
+// Status
+$watermelon: #FF4961;
+$aqua-marine: #30DEA0;
+$azure: #1E9FF2;
+$apricot: #FFC06A;
+// Tags
+$tag-guideNHost: #666EE8;
+$tag-guide: #BE7A0B;
+$tag-host: #36BEFB;
+$tag-fishery: #7C8E72;
+
+// 4.1 Colors : Template front end marketplace (DECISIONS)
+// ==========================================================================
+
+$background-nav: $white;
+$color-link: $charcoal-grey;
+$color-text: $charcoal-grey;
+$color-text-light: $steel;
+$color-text-lighter: $white;
+$color-text-primary: $seafoam-blue;
+$color-heading: $charcoal-grey;
+$color-heading-primary: $seafoam-blue;
+$color-heading-secondary: $pale-grey;
+$border-color: $pale-grey;
+$background-primary-button: $seafoam-blue;
+
+// 5. Fonts
+// ==========================================================================
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+$font-family: 'Montserrat', sans-serif;
+$font-size-xs: 0.8rem;
+$font-size-s: 0.85rem;
+$font-size-m: 0.9rem;
+$font-size-l: 1rem;
+$font-size-xl: 1.1rem;
+$heading-size-xs: 0.7rem;
+$heading-size-s: 0.9rem;
+$heading-size-m: 1.2rem;
+$heading-size-l: 2.5rem;
+$heading-size-xl: 3rem;
+$line-height-m: $font-size-m * 1.4;
+$letter-spacing: 0.008rem;
+$normal: 400;
+$semibold: 600;
+$bold: 700;
+$line-height-diff: 0.5rem;
+
+//  6. Spacing
+// ==========================================================================
+
+$space-xs: 0.6rem;
+$space-s: 0.8rem;
+$space-m: 1rem;
+$space-l: 1.2rem;
+$space-xl: 2.2rem;
+$space-xxl: 3.4rem;

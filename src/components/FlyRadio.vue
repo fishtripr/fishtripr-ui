@@ -126,6 +126,10 @@
           }
         }
 
+        &:focus {
+          outline: none;
+        }
+
         &:checked {
           & ~ span:after {
             position: absolute;

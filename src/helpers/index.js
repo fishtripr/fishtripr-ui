@@ -7,6 +7,4 @@ function getRandomId(type) {
   return `${type}-${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
 }
 
-export default {
-  getRandomId,
-};
+export const getRandomId = getRandomId

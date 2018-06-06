@@ -19,7 +19,6 @@
 
   export default {
     name: 'fly-radio-group',
-    componentName: 'fly-radio-group',
     mixins: [Emitter],
     props: {
       value: {},

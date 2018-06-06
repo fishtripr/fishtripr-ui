@@ -1,72 +1,54 @@
 <template>
-  <label class='fly-radio'
-         :class="[
-           {'is-disabled': isDisabled},
-           {'is-focus': focus},
-           {'is-checked': model === label}
-         ]"
-         role='radio'
-         :aria-checked='model === label'
-         :aria-disabled='isDisabled'
-         :tabindex='tabIndex'
-         @keydown.space.stop.prevent='model = isDisabled ? model : label'
-  >
-    <span class='fly-radio__input'
-          :class="{
-            'is-disabled': isDisabled,
-            'is-checked': model === label
-          }"
+  <div class='fly-radio'>
+    <label :for='defaultId'
+           role='radio'
     >
-      <span class='fly-radio__inner'></span>
-      <input class='fly-radio__original'
-             :value='label'
+      <input :id='defaultId'
              type='radio'
-             aria-hidden='true'
+             :tabindex='tabIndex'
              v-model='model'
-             @focus='focus = true'
-             @blur='focus = false'
-             @change='handleChange'
              :name='name'
              :disabled='isDisabled'
-             tabindex='-1'
-      >
-    </span>
-    <span class='fly-radio__label'>
-      <slot></slot>
-      <template v-if='!$slots.default'>{{label}}</template>
-    </span>
-  </label>
+             :value='label'
+             :checked='isChecked'
+             @change='handleChange'>
+      <span>{{label}}</span>
+    </label>
+  </div>
 </template>
 
 <script>
   import Emitter from '@/mixins/emitter'
+  import {getRandomId} from '@/helpers'
 
   export default {
     name: 'fly-radio',
     componentName: 'fly-radio',
     mixins: [Emitter],
     props: {
-      value: {},
-      label: {
+      name: String,
+      label: String,
+      optionValue: {
         type: [String, Number, Boolean],
-        required: true
+        default: false,
       },
+      value: [String, Number, Boolean],
       disabled: {
         type: Boolean,
-        default: false
-      },
-      name: String
+        default: false,
+      }
     },
     data() {
       return {
-        focus: false
+        focus: false,
+        defaultId: this.id || getRandomId('fly-radio')
       }
     },
     computed: {
       isGroup() {
         let parent = this.$parent
         while (parent) {
-          if (parent.$options.componentName !== 'fly-radio-group') {
+          if (parent.$options.name !== 'fly-radio-group') {
             parent = parent.$parent
           } else {
             this._radioGroup = parent
@@ -92,6 +74,9 @@
           ? this._radioGroup.disabled || this.disabled
           : this.disabled;
       },
+      isChecked() {
+        return this.label === this.value;
+      },
       tabIndex() {
         return !this.isDisabled ? (this.isGroup ? (this.model === this.label ? 0 : -1) : 0) : -1
       }
@@ -107,70 +92,79 @@
   }
 </script>
 
-<style lang='scss'>
-  @import '../assets/style/common/colors';
+<style lang='scss' scoped>
+  @import '../assets/sass/mixins';
+  @import '../assets/style/common/variables';
 
   .fly-radio {
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    padding-top: 5px;
-    padding-bottom: 5px;
-
-    &:focus {
-      outline: none;
-    }
-
-    .fly-radio__input {
-      white-space: nowrap;
-      cursor: pointer;
-      outline: 0;
-      line-height: 1;
-      vertical-align: middle;
+    label {
+      display: block;
+      padding: 5px 15px 5px 2em;
       position: relative;
-      display: inline-block;
-      border: 1px solid $pale-teal;
-      border-radius: 100%;
-      width: 14px;
-      height: 14px;
-      background-color: white;
-      box-sizing: border-box;
+      font-weight: normal;
+      color: $charcoal-grey;
+      z-index: 1;
+      line-height: 14px;
+      text-align: left;
+      @include ellipsis();
 
-      &.is-checked .fly-radio__inner {
-        border-color: $pale-teal;
-        background: white;
+      input {
+        position: absolute;
+        left: -99999px;
 
-        &::after {
-          width: 8px;
-          height: 8px;
-          border-radius: 100%;
-          background-color: $pale-teal;
-          content: "";
-          position: absolute;
-          left: 16%;
-          top: 18%;
+        &:disabled ~ span {
+          color: $steel;
+
+          &:after {
+            background: $pale-grey;
+          }
+
+          &:before {
+            border-color: $pale-grey;
+          }
+        }
+
+        &:checked {
+          & ~ span:after {
+            position: absolute;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            background: $seafoam-blue;
+            content: '';
+            left: 3px;
+            top: 48%;
+            transform: translateY(-50%);
+          }
+
+          &:disabled {
+            & ~ span:after {
+              background: $pale-grey;
+            }
+
+            & ~ span:before {
+              border-color: $pale-grey;
+            }
+          }
         }
       }
 
-      .fly-radio__original {
-        opacity: 0;
-        outline: 0;
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: 0;
-      }
-    }
+      & > span {
+        font-size: 0.875rem;
 
-    .fly-radio__label {
-      font-family: 'Montserrat';
-      font-weight: 300;
-      color: $charcoal-grey;
-      font-size: 14px;
-      padding-left: 10px;
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          border-radius: 50%;
+          box-sizing: border-box;
+          width: 16px;
+          height: 16px;
+          border: solid 1px $seafoam-blue;
+          top: 48%;
+          transform: translateY(-50%);
+        }
+      }
     }
   }
 </style>

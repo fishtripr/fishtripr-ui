@@ -28,21 +28,21 @@
 </script>
 
 <style lang='scss'>
-  @import '../assets/style/common/colors';
+  @import '../assets/style/common/variables';
 
   .fly-form-label {
-    font-family: Montserrat;
+    font-family: $font-family;
     font-size: 14px;
     font-weight: 500;
 
     .sublabel {
-      color: $cloudy-blue;
+      color: $steel;
       margin-left: 5px;
     }
 
     .header {
-      font-family: 'Montserrat';
-      color: $cloudy-blue;
+      font-family: $font-family;
+      color: $steel;
       margin-top: 10px;
     }
   }

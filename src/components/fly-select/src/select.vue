@@ -123,14 +123,13 @@
 </script>
 
 <style lang='scss'>
-  @import '../../../assets/style/common/colors';
-  @import '../../../assets/style/common/fonts';
+  @import '../../../assets/style/common/variables';
 
   .fly-select {
     display: flex;
     position: relative;
     align-items: center;
-    width: auto;
+    width: 100%;
     height: 40px;
     flex: 2;
     cursor: pointer;

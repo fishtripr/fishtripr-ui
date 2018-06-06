@@ -12,7 +12,7 @@
                 Who will be travelling ?
               </fly-form-label>
               <fly-radio-group v-model='travellers'>
-                <fly-radio label='alone'></fly-radio>
+                <fly-radio disabled label='alone'></fly-radio>
                 <fly-radio label='couple'></fly-radio>
                 <fly-radio label='family'></fly-radio>
                 <fly-radio label='friends'></fly-radio>
@@ -56,7 +56,7 @@
     name: 'demo-page',
     data() {
       return {
-        travellers: '',
+        travellers: 'alone',
         destination: '',
         destinationOptions: ['France', 'Bolivia', 'Finland']
       }
